@@ -1,11 +1,7 @@
 package com.lin.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lin.dao.UserDao;
 import com.lin.entity.User;
 
 /**
@@ -18,18 +14,12 @@ import com.lin.entity.User;
 @Service
 public class UserService {
 	
-	@Autowired
-	private UserDao userDao;
-	
-	public List<User> find(){
-		return (List<User>) userDao.findAll();
-	}
 	
 	public User findUserByName(String name){
-		return userDao.findByUsername(name);
+		return new User();
 	}
 	
 	public User findUserByAge(Integer age){
-		return userDao.findByUserage(age);
+		return new User();
 	}
 }

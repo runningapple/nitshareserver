@@ -1,6 +1,5 @@
 package com.lin.test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
@@ -9,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.lin.entity.Book;
+import com.lin.entity.User;
 import com.lin.redis.UserRedis;
 
 /**
@@ -28,7 +27,7 @@ public class RedisTest {
 	
 	private String id = "123";
 	private String name = "toadm";
-	Book user = new Book();
+	User user = new User();
 	
 	/**
 	 * 测试保存，set
@@ -36,9 +35,6 @@ public class RedisTest {
 	@Test
 	public void save(){
 
-		user.setId(id);
-		user.setName(name);
-		userRedis.addOrUpdate(user);
 	}
 	
 	/**
@@ -46,9 +42,6 @@ public class RedisTest {
 	 */
 	@Test
 	public void read(){
-		user = userRedis.load(id);
-		System.out.println(user);
-		assertEquals(name, user.getName());
 	}
 	
 	/**

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Commodity">
+	<typeAlias alias="Commodity" type="com.lin.entity.Commodity"/>
+	<resultMap id="CommodityResult" class="Commodity">
+		<result property="id" column="id" nullValue=""/>
+		<result property="pubDate" column="pubDate" nullValue=""/>
+		<result property="name" column="name" nullValue=""/>
+		<result property="price" column="price" nullValue=""/>
+		<result property="description" column="description" nullValue=""/>
+		<result property="imgUrl0" column="imgUrl0" nullValue=""/>
+		<result property="imgUrl1" column="imgUrl1" nullValue=""/>
+		<result property="imgUrl2" column="imgUrl2" nullValue=""/>
+	</resultMap>
+	
+	<insert id="insert" parameterClass="Commodity">
+		INSERT INTO commodity (
+			id,	pubDate, name, price,
+			description, imgUrl0,
+			imgUrl1, imgUrl2
+		)
+		VALUES(
+			#id#,#pubDate#,	#name#,	#price#,
+			#description#, #imgUrl0#, #imgUrl1#,
+			#imgUrl2#
+		)
+	</insert>
+	
+	<!-- 分页获取商品信息 -->
+	<select id="get" parameterClass="java.util.HashMap" resultMap="CommodityResult">
+		SELECT
+			id, pubDate, name, price, description,
+			imgUrl0, imgUrl1, imgUrl2
+		FROM
+			commodity
+		LIMIT #page#,#size#
+	</select>
+	
+</sqlMap>

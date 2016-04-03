@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig
+PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+
+<!-- 	<properties resource="jdbc.properties" /> 
+    <transactionManager type="JDBC">  
+        <dataSource type="SIMPLE">  
+            <property name="JDBC.Driver" value="${jdbc.driverClassName}" />  
+            <property name="JDBC.ConnectionURL" value="${jdbc.url}" />  
+            <property name="JDBC.Username" value="${jdbc.username}" />  
+            <property name="JDBC.Password" value="${jdbc.password}" />  
+        </dataSource>
+    </transactionManager> -->
+<!-- 
+	<settings 
+	cacheModelsEnabled="true"全局性地启用或者禁用SQLMapClient的所有缓存
+	enhancementEnabled="true"全局性地启用或者禁用运行时字节码增强，以优化访问javabean属性的性能，同时优化延迟加载
+	lazyLoadingEnabled="true"全局性地启用或者禁用SQLMapClient的所有延迟加载
+	errorTracingEnabled="true"
+	maxRequests="32" 
+	maxSessions="10"
+	maxTransactions="5" 
+	useStatementNamespaces="true" /> 
+	 -->
+	 <settings useStatementNamespaces="true"/>
+    <!--  配置Ibatis要使用的SqlMap文件信息 --> 
+    <!-- <sqlMap resource="com/lin/cfg/ibatis/sqlmaps/USER.xml"/> -->
+	<sqlMap resource="sqlmaps/COMMODITY.xml"/>
+	
+</sqlMapConfig>

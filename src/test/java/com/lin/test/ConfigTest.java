@@ -8,8 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring.xml","classpath:spring-mvc.xml",
-	"classpath:spring-jpa.xml","classpath:spring-redis.xml"})
+@ContextConfiguration({"classpath:spring.xml","classpath:spring-mvc.xml"})
 public class ConfigTest {
 	
 	@Before

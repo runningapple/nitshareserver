@@ -1,6 +1,6 @@
 package com.lin.redis;
 
-import com.lin.entity.Book;
+import com.lin.entity.User;
 
 /**
  * 
@@ -10,9 +10,9 @@ import com.lin.entity.Book;
  * @createTime 2016年4月1日  下午4:19:08
  */
 public interface UserRedis {
-	public void addOrUpdate(Book user);
+	public void addOrUpdate(User user);
 	
-	public Book load(String id);
+	public User load(String id);
 	
 	public void delete(String id);
 }

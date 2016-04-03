@@ -1,10 +1,8 @@
 package com.lin.redis.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import com.lin.entity.Book;
+import com.lin.entity.User;
 import com.lin.redis.UserRedis;
 
 /**
@@ -17,6 +15,24 @@ import com.lin.redis.UserRedis;
 @Service
 public class UserRedisImpl implements UserRedis{
 
+	@Override
+	public void addOrUpdate(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public User load(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+/*
 	@Autowired
 	private RedisTemplate<String, Book> redisTemplate;
 
@@ -33,6 +49,6 @@ public class UserRedisImpl implements UserRedis{
 	@Override
 	public void delete(String id) {
 		redisTemplate.delete("user.id." + id);
-	}
+	}*/
 
 }
