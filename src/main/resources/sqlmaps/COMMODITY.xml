@@ -6,32 +6,43 @@
 	<resultMap id="CommodityResult" class="Commodity">
 		<result property="id" column="id" nullValue=""/>
 		<result property="pubDate" column="pubDate" nullValue=""/>
-		<result property="name" column="name" nullValue=""/>
+		<result property="cname" column="cname" nullValue=""/>
 		<result property="price" column="price" nullValue=""/>
 		<result property="description" column="description" nullValue=""/>
 		<result property="imgUrl0" column="imgUrl0" nullValue=""/>
 		<result property="imgUrl1" column="imgUrl1" nullValue=""/>
 		<result property="imgUrl2" column="imgUrl2" nullValue=""/>
+		<result property="uid" column="uid" nullValue=""/>
+		<result property="tradePlace" column="tradePlace" nullValue=""/>
+		<result property="type" column="type" nullValue=""/>
+		<result property="qq" column="qq" nullValue=""/>
+		<result property="mobile" column="mobile" nullValue=""/>
+		<result property="bargain" column="bargain" nullValue=""/>
+		<result property="state" column="state" nullValue=""/>
 	</resultMap>
 	
 	<insert id="insert" parameterClass="Commodity">
 		INSERT INTO commodity (
-			id,	pubDate, name, price,
-			description, imgUrl0,
-			imgUrl1, imgUrl2
+			id, pubDate, cname, price,
+			description, imgUrl0, imgUrl1,
+			imgUrl2, uid, tradePlace,
+			type, qq, mobile, bargain,state
 		)
 		VALUES(
-			#id#,#pubDate#,	#name#,	#price#,
+			#id#, #pubDate#, #cname#, #price#,
 			#description#, #imgUrl0#, #imgUrl1#,
-			#imgUrl2#
+			#imgUrl2#, #uid#, #tradePlace#,
+			#type#, #qq#, #mobile#, #bargain#,#state#
 		)
 	</insert>
 	
 	<!-- 分页获取商品信息 -->
 	<select id="get" parameterClass="java.util.HashMap" resultMap="CommodityResult">
 		SELECT
-			id, pubDate, name, price, description,
-			imgUrl0, imgUrl1, imgUrl2
+			id, pubDate, cname, price,
+			description, imgUrl0, imgUrl1,
+			imgUrl2, uid, tradePlace,
+			type, qq, mobile, bargain,state
 		FROM
 			commodity
 		LIMIT #page#,#size#

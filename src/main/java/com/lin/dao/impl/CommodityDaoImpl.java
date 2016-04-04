@@ -27,7 +27,7 @@ public class CommodityDaoImpl implements CommodityDao {
 	private SqlMapClient sqlMapClient;
 	
 	@Override
-	public List<HashMap<String, Object>> getCommodity(int page, int size) {
+	public List<HashMap<String, Object>> queryCommodity(int page, int size) {
 		List<HashMap<String, Object>> result = new ArrayList<HashMap<String,Object>>();
 		HashMap<String, Integer> codMap = new HashMap<String, Integer>();
 		codMap.put("page", page);
@@ -50,6 +50,18 @@ public class CommodityDaoImpl implements CommodityDao {
 			ex.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public boolean delCommodity(int commodityId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyCommodity(Commodity commodity) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
