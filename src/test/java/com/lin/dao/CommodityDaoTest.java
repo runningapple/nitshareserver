@@ -35,7 +35,7 @@ public class CommodityDaoTest {
 	 */
 	@Test
 	public void queryCommodityTest(){
-		List<HashMap<String, Object>> resultList = commodityDao.queryCommodity(0, 1);
+		List<HashMap<String, Object>> resultList = commodityDao.queryCommodityIntroduction(2, 2);
 		String result = JSONArray.fromObject(resultList).toString();
 		System.out.println(result);
 	}

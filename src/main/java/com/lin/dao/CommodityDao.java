@@ -19,7 +19,7 @@ public interface CommodityDao {
 	 * 分页获取商品,展示商品
 	 * @return
 	 */
-	public List<HashMap<String, Object>> queryCommodity(int page, int size);
+	public List<HashMap<String, Object>> queryCommodityIntroduction(int page, int size);
 	
 	
 	/**

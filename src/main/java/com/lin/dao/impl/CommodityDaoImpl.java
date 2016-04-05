@@ -27,13 +27,13 @@ public class CommodityDaoImpl implements CommodityDao {
 	private SqlMapClient sqlMapClient;
 	
 	@Override
-	public List<HashMap<String, Object>> queryCommodity(int page, int size) {
+	public List<HashMap<String, Object>> queryCommodityIntroduction(int page, int size) {
 		List<HashMap<String, Object>> result = new ArrayList<HashMap<String,Object>>();
 		HashMap<String, Integer> codMap = new HashMap<String, Integer>();
 		codMap.put("page", page);
 		codMap.put("size", size);
 		try{
-			result = this.sqlMapClient.queryForList("Commodity.get", codMap);
+			result = this.sqlMapClient.queryForList("Commodity.getCommodityIntroduction", codMap);
 		} catch (SQLException ex){
 			ex.printStackTrace();
 		}

@@ -13,7 +13,7 @@ import com.lin.entity.Commodity;
 public interface CommodityService {
 
 	/**
-	 * 获取商品
+	 * 分页获取商品概要信息
 	 * @param page	页数
 	 * @param size	个数
 	 * @return

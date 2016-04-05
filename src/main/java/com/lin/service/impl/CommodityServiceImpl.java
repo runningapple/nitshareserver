@@ -27,16 +27,17 @@ public class CommodityServiceImpl implements CommodityService {
 	@Autowired
 	private CommodityDao commodityDao;
 	
+
 	@Override
 	public String queryCommodityByPage(String page, String size) {
 		int npage = 0;
 		int nsize = 0;
 		
 		if (NumberRegex.isUnNagativeInteger(page) && NumberRegex.isUnNagativeInteger(size)){
-			npage = Integer.parseInt(page);
 			nsize = Integer.parseInt(size);
+			npage = Integer.parseInt(page) * nsize;
 		}
-		List<HashMap<String, Object>> resultList = this.commodityDao.queryCommodity(npage, nsize);
+		List<HashMap<String, Object>> resultList = this.commodityDao.queryCommodityIntroduction(npage, nsize);
 		return JSONArray.fromObject(resultList).toString();
 	}
 
