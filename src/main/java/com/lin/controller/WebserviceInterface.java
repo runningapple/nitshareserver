@@ -44,7 +44,7 @@ public class WebserviceInterface {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="commodity.get", method=RequestMethod.GET)
+	@RequestMapping(value="commodity.get",produces="text/html;charset=UTF-8", method=RequestMethod.GET)//添加produces防止数据传到前台乱码
 	public String queryCommodity(String page, String size, String callback){
 		return this.result(callback, this.commodityService.queryCommodityByPage(page.trim(), size.trim()));
 	}

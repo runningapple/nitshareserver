@@ -25,7 +25,7 @@ public class CommodityServiceTest {
 	 */
 	@Test
 	public void queryByPageTest(){
-		String result = cs.queryCommodityByPage("0", "1");
+		String result = cs.queryCommodityByPage("0", "4");
 		System.out.println(result);
 	}
 	
