@@ -1,4 +1,4 @@
-package com.lin.test;
+package com.lin.dao;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -25,7 +25,7 @@ import com.lin.entity.Commodity;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring.xml"})
-public class CommodityTest {
+public class CommodityDaoTest {
 	
 	@Autowired
 	private CommodityDao commodityDao;

@@ -18,7 +18,7 @@ public interface CommodityService {
 	 * @param size	个数
 	 * @return
 	 */
-	public String getCommodity(String page, String size);
+	public String queryCommodityByPage(String page, String size);
 	
 	/**
 	 * 添加商品

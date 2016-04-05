@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.lin.dao.CommodityDao;
 import com.lin.entity.Commodity;
 import com.lin.service.CommodityService;
+import com.lin.utils.NumberRegex;
 
 /**
  * 
@@ -27,8 +28,15 @@ public class CommodityServiceImpl implements CommodityService {
 	private CommodityDao commodityDao;
 	
 	@Override
-	public String getCommodity(String page, String size) {
-		List<HashMap<String, Object>> resultList = this.commodityDao.queryCommodity(Integer.parseInt(page), Integer.parseInt(size));
+	public String queryCommodityByPage(String page, String size) {
+		int npage = 0;
+		int nsize = 0;
+		
+		if (NumberRegex.isUnNagativeInteger(page) && NumberRegex.isUnNagativeInteger(size)){
+			npage = Integer.parseInt(page);
+			nsize = Integer.parseInt(size);
+		}
+		List<HashMap<String, Object>> resultList = this.commodityDao.queryCommodity(npage, nsize);
 		return JSONArray.fromObject(resultList).toString();
 	}
 
