@@ -27,5 +27,13 @@ public interface CommodityService {
 	 */
 	public String addCommodity(Commodity commodity);
 	
+	/**
+	 * 根据商品名模糊查询商品
+	 * @param name
+	 * @param page
+	 * @param size
+	 * @return
+	 */
+	public String fuzzyQuery(String name, String page, String size);
 	
 }

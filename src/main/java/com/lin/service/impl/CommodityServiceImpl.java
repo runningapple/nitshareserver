@@ -48,4 +48,17 @@ public class CommodityServiceImpl implements CommodityService {
 		return resultString;
 	}
 
+	@Override
+	public String fuzzyQuery(String name, String page, String size) {
+		int npage = 0;
+		int nsize = 0;
+		
+		if (NumberRegex.isUnNagativeInteger(page) && NumberRegex.isUnNagativeInteger(size)){
+			nsize = Integer.parseInt(size);
+			npage = Integer.parseInt(page) * nsize;
+		}
+		List<HashMap<String, Object>> resultList = this.commodityDao.queryCommodityByName(name, npage, nsize);
+		return JSONArray.fromObject(resultList).toString();
+	}
+
 }

@@ -42,4 +42,11 @@ public interface CommodityDao {
 	 * @return
 	 */
 	public boolean modifyCommodity(Commodity commodity);
+	
+	/**
+	 * 根据name模糊查询商品
+	 * @param name
+	 * @return
+	 */
+	public List<HashMap<String, Object>> queryCommodityByName(String name, int page, int size);
 }

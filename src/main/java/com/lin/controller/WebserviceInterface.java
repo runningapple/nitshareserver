@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lin.entity.User;
 import com.lin.service.CommodityService;
+import com.lin.service.UserService;
 
 /**
  * 
@@ -21,6 +23,9 @@ public class WebserviceInterface {
 
 	@Autowired
 	private CommodityService commodityService;
+	
+	@Autowired
+	private UserService userService;
 	
 	/**
 	 * 测试demo
@@ -48,6 +53,62 @@ public class WebserviceInterface {
 	public String queryCommodity(String page, String size, String callback){
 		return this.result(callback, this.commodityService.queryCommodityByPage(page.trim(), size.trim()));
 	}
+	
+	/**
+	 * 根据商品名，模糊分页查询商品
+	 * @param name
+	 * @param page
+	 * @param size
+	 * @param callback
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="commodity.fuzzy",produces="text/html;charset=UTF-8", method=RequestMethod.GET)
+	public String fuzzyQuery(String name, String page, String size, String callback){
+		return this.result(callback, this.commodityService.fuzzyQuery(name.trim(), page.trim(), size.trim()));
+	}
+	/**
+	 * 注册用户
+	 * 
+	 * http://localhost:8080/nitshare/serve/user.register?nickname=tom&password=123&phone=123&qq=33&mail=a@b.com&callback=back
+	 * @param user
+	 * @param callback
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="user.register", produces="text/html;charset=UTF-8", method=RequestMethod.GET)
+	public String registerUser(User user, String callback){
+		return this.result(callback, this.userService.registerUser(user));
+	}
+	
+	/**
+	 * 用户登录
+	 * http://localhost:8080/nitshare/serve/user.login?account=yyy&pwd=yyy&callback=back
+	 * @param account	账号
+	 * @param password	密码
+	 * @param callback
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/user.login", produces="text/html;charset=UTF-8", method = RequestMethod.GET)
+	public String loginUser(String account, String pwd, String callback) {
+		return this.result(callback, this.userService.loginUser(account, pwd));
+	}
+	
+	/**
+	 * 验证账号唯一性
+	 * 
+	 * http://localhost:8080/nitshare/serve/user.login?account=yyy&callback=back
+	 * @param account
+	 * @param callback
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/user.check", produces="text/html;charset=UTF-8", method = RequestMethod.GET)
+	public String checkAccount(String account, String callback){
+		return this.result(callback, this.userService.checkAccount(account));
+	}
+	
 	
 	/**
 	 * 包装函数

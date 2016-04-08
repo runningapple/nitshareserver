@@ -50,4 +50,11 @@ public class CommodityDaoTest {
 		boolean result = commodityDao.addCommodity(cd);
 		System.out.println(result);
 	}
+	
+	@Test
+	public void fuzzyQueryTest(){
+		List<HashMap<String, Object>> resultList = commodityDao.queryCommodityByName("衣",0, 4);
+		String result = JSONArray.fromObject(resultList).toString();
+		System.out.println(result);
+	}
 }

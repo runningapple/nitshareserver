@@ -64,4 +64,19 @@ public class CommodityDaoImpl implements CommodityDao {
 		return false;
 	}
 
+	@Override
+	public List<HashMap<String, Object>> queryCommodityByName(String name, int page, int size) {
+		List<HashMap<String, Object>> result = new ArrayList<HashMap<String,Object>>();
+		HashMap<String, Object> codMap = new HashMap<String, Object>();
+		codMap.put("name", name);
+		codMap.put("page", page);
+		codMap.put("size", size);
+		try{
+			result = this.sqlMapClient.queryForList("Commodity.fuzzyQuery", codMap);
+		} catch (SQLException ex){
+			ex.printStackTrace();
+		}
+		return result;
+	}
+
 }
