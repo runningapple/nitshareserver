@@ -49,8 +49,8 @@ public class RedisTest {
 	 */
 	@Test
 	public void delete(){
-		userRedis.delete(id);
-		user = userRedis.load(id);
-		assertNull(user);
+//		userRedis.delete(id);
+//		user = userRedis.load(id);
+//		assertNull(user);
 	}
 }

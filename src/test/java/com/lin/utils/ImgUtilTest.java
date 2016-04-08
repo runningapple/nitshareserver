@@ -26,7 +26,6 @@ public class ImgUtilTest {
 				ImageUtil.resizeImage(s, "E:\\素材\\nitshareImg\\copy\\"+cnt+".jpg", 160, 160);
 				cnt++;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

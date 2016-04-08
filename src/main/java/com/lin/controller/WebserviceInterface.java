@@ -11,7 +11,7 @@ import com.lin.service.CommodityService;
 import com.lin.service.UserService;
 
 /**
- * 
+ * mvn package -Dmaven.test.failture.ignore=true maven打包
  * <p>ClassName: WebserviceInterface.java<p>
  * <p>Service接口<p>
  * @author linzj
