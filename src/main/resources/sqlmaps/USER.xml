@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="User">
+	<typeAlias alias="User" type="com.lin.entity.User"/>
+	<resultMap id="UserResult" class="User">
+		<result property="id" column="id" nullValue=""/>
+		<result property="nickname" column="nickname" nullValue=""/>
+		<result property="account" column="account" nullValue=""/>
+		<result property="pwd" column="pwd" nullValue=""/>
+		<result property="score" column="score" nullValue=""/>
+		<result property="rank" column="rank" nullValue=""/>
+		<result property="mobile" column="mobile" nullValue=""/>
+		<result property="mail" column="mail" nullValue=""/>
+		<result property="qq" column="qq" nullValue=""/>
+		<result property="headimg" column="headimg" nullValue=""/>
+	</resultMap>
+	
+	<!-- 添加用户 -->
+	<insert id="insert" parameterClass="User">
+		INSERT INTO user (
+			id,account,pwd,mobile,mail,qq,nickname,headimg,score,rank
+		)
+		VALUES(
+			#id#,#account#,#pwd#,#mobile#,#mail#,#qq#,#nickname#,#headimg#,#score#,#rank#
+		)
+	</insert>
+	
+	<!-- 分页获取商品概要信息 -->
+	<select id="getUser" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			id,account,mobile,mail,qq,nickname,headimg,score,rank
+		FROM
+			user
+		WHERE account=#account# AND pwd=#pwd#
+	</select>
+	
+	<!-- 查询账号是否已经存在 -->
+	<select id="checkAccount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT count(*) as count FROM user WHERE account = #account#
+	</select>
+	
+</sqlMap>

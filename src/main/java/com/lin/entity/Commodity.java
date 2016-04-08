@@ -3,25 +3,23 @@ package com.lin.entity;
 import java.util.Date;
 
 /*
-+-------------+---------------+------+-----+---------+----------------+
-| Field       | Type          | Null | Key | Default | Extra          |
-+-------------+---------------+------+-----+---------+----------------+
-| id          | bigint(20)    | NO   | PRI | NULL    | auto_increment |
-| pubDate     | datetime      | NO   |     | NULL    |                |
-| cname       | varchar(255)  | NO   |     | NULL    |                |
-| price       | decimal(10,0) | NO   |     | NULL    |                |
-| description | varchar(255)  | YES  |     | NULL    |                |
-| imgUrl0     | varchar(255)  | NO   |     | NULL    |                |
-| imgUrl1     | varchar(255)  | YES  |     | NULL    |                |
-| imgUrl2     | varchar(255)  | YES  |     | NULL    |                |
-| uid         | bigint(20)    | NO   |     | NULL    |                |
-| tradePlace  | varchar(100)  | NO   |     | NULL    |                |
-| type        | int(20)       | NO   |     | NULL    |                |
-| qq          | varchar(50)   | YES  |     | NULL    |                |
-| mobile      | varchar(50)   | YES  |     | NULL    |                |
-| bargain     | int(10)       | NO   |     | NULL    |                |
-| state       | int(10)       | NO   |     | NULL    |                |
-+-------------+---------------+------+-----+---------+----------------+			
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `pubDate` datetime NOT NULL COMMENT '商品发布日期',
+  `cname` varchar(255) NOT NULL COMMENT '商品名',
+  `price` decimal(10,2) NOT NULL COMMENT '商品价格',
+  `description` varchar(255) DEFAULT NULL COMMENT '商品描述',
+  `imgUrl0` varchar(255) NOT NULL COMMENT '图片地址',
+  `imgUrl1` varchar(255) DEFAULT NULL COMMENT '图片地址',
+  `imgUrl2` varchar(255) DEFAULT NULL COMMENT '图片地址',
+  `uid` bigint(20) NOT NULL COMMENT '用户id',
+  `tradePlace` varchar(100) NOT NULL COMMENT '交易地址',
+  `type` int(20) NOT NULL COMMENT '商品类型',
+  `qq` varchar(50) DEFAULT NULL,
+  `mobile` varchar(50) DEFAULT NULL,
+  `bargain` int(10) NOT NULL COMMENT '是否可以讲价',
+  `state` int(10) NOT NULL COMMENT '商品状态',
+  `click` bigint(255) NOT NULL DEFAULT '0' COMMENT '商品点击量',
+  `mid` bigint(20) NOT NULL DEFAULT '0' COMMENT '商品消息id',	
 */
 /**
 * 
@@ -76,6 +74,12 @@ public class Commodity{
 	/*商品状态*/
 	private Integer state;
 	
+	/*点击量*/
+	private Integer click;
+	
+	/*消息id*/
+	private Integer mid;
+	
 	public Commodity(){
 		super();
 	};
@@ -83,7 +87,7 @@ public class Commodity{
 	public Commodity(Integer id, Integer uid, Date pubDate, String cname,
 			Double price, String imgUrl0, String imgUrl1, String imgUrl2,
 			String description, String tradePlace, Integer type, String qq,
-			String mobile, Integer bargain, Integer state) {
+			String mobile, Integer bargain, Integer state, Integer click, Integer mid) {
 		super();
 		this.id = id;
 		this.uid = uid;
@@ -100,6 +104,8 @@ public class Commodity{
 		this.mobile = mobile;
 		this.bargain = bargain;
 		this.state = state;
+		this.click = click;
+		this.mid = mid;
 	}
 
 	public Integer getId() {
@@ -222,5 +228,21 @@ public class Commodity{
 		this.state = state;
 	}
 
+	public Integer getClick() {
+		return click;
+	}
 
+	public void setClick(Integer click) {
+		this.click = click;
+	}
+
+	public Integer getMid() {
+		return mid;
+	}
+
+	public void setMid(Integer mid) {
+		this.mid = mid;
+	}
+
+	
 }

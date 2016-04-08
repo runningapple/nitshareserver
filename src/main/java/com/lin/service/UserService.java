@@ -1,25 +1,29 @@
 package com.lin.service;
 
-import org.springframework.stereotype.Service;
-
 import com.lin.entity.User;
 
-/**
- * 
- * <p>ClassName: UserService.java<p>
- * <p>Description<p>
- * @author linzj
- * @createTime 2016年4月1日  下午3:38:46
- */
-@Service
-public class UserService {
+public interface UserService {
+
+	/**
+	 * 用户登录
+	 * @param account
+	 * @param pwd
+	 * @return
+	 */
+	public String loginUser(String account, String pwd);
 	
+	/**
+	 * 注册用户
+	 * @param user
+	 * @return
+	 */
+	public String registerUser(User user);
 	
-	public User findUserByName(String name){
-		return new User();
-	}
+	/**
+	 * 查询账号是否重复
+	 * @param mail
+	 * @return
+	 */
+	public String checkAccount(String account);
 	
-	public User findUserByAge(Integer age){
-		return new User();
-	}
 }

@@ -19,6 +19,8 @@
 		<result property="mobile" column="mobile" nullValue=""/>
 		<result property="bargain" column="bargain" nullValue=""/>
 		<result property="state" column="state" nullValue=""/>
+		<result property="click" column="click" nullValue=""/>
+		<result property="mid" column="mid" nullValue=""/>
 	</resultMap>
 	
 	<insert id="insert" parameterClass="Commodity">
@@ -26,13 +28,13 @@
 			id, pubDate, cname, price,
 			description, imgUrl0, imgUrl1,
 			imgUrl2, uid, tradePlace,
-			type, qq, mobile, bargain,state
+			type, qq, mobile, bargain,state,click,mid
 		)
 		VALUES(
 			#id#, #pubDate#, #cname#, #price#,
 			#description#, #imgUrl0#, #imgUrl1#,
 			#imgUrl2#, #uid#, #tradePlace#,
-			#type#, #qq#, #mobile#, #bargain#,#state#
+			#type#, #qq#, #mobile#, #bargain#,#state#,#click#,#mid#
 		)
 	</insert>
 	
@@ -51,7 +53,7 @@
 			id, pubDate, cname, price,
 			description, imgUrl0, imgUrl1,
 			imgUrl2, uid, tradePlace,
-			type, qq, mobile, bargain,state
+			type, qq, mobile, bargain,state,click,mid
 		FROM
 			commodity
 		LIMIT #page#,#size#

@@ -46,7 +46,7 @@ public class CommodityDaoTest {
 	@Test
 	public void addCommodityTest(){
 		Commodity cd = new Commodity(2,1,new Date(),"test1",
-				3.2,"test1","test","test","test","test",0,"test","test",0,0);
+				3.2,"test1","test","test","test","test",0,"test","test",0,0,0,0);
 		boolean result = commodityDao.addCommodity(cd);
 		System.out.println(result);
 	}

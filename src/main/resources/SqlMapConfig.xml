@@ -29,5 +29,5 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
     <!--  配置Ibatis要使用的SqlMap文件信息 --> 
     <!-- <sqlMap resource="com/lin/cfg/ibatis/sqlmaps/USER.xml"/> -->
 	<sqlMap resource="sqlmaps/COMMODITY.xml"/>
-	
+	<sqlMap resource="sqlmaps/USER.xml"/>
 </sqlMapConfig>
