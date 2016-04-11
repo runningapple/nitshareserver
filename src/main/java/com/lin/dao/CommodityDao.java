@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.lin.entity.Commodity;
 
+
 /**
  * 
 * @ClassName: CommodityDao 
@@ -44,8 +45,19 @@ public interface CommodityDao {
 	public boolean modifyCommodity(Commodity commodity);
 	
 	/**
-	 * 根据name模糊查询商品
+	 * 根据商品类型分页查询商品概要信息
+	 * @param type
+	 * @param page
+	 * @param size
+	 * @return
+	 */
+	public List<HashMap<String, Object>> queryCommodityByType(int type, int page, int size);
+	
+	/**
+	 * 根据商品名，用户名模糊分页查询商品
 	 * @param name
+	 * @param page
+	 * @param size
 	 * @return
 	 */
 	public List<HashMap<String, Object>> queryCommodityByName(String name, int page, int size);

@@ -51,9 +51,22 @@ public class CommodityDaoTest {
 		System.out.println(result);
 	}
 	
+	/**
+	 * 根据商品名模糊查询测试
+	 */
 	@Test
 	public void fuzzyQueryTest(){
 		List<HashMap<String, Object>> resultList = commodityDao.queryCommodityByName("衣",0, 4);
+		String result = JSONArray.fromObject(resultList).toString();
+		System.out.println(result);
+	}
+	
+	/**
+	 * 根据商品类型查询
+	 */
+	@Test
+	public void queryByType(){
+		List<HashMap<String, Object>> resultList = commodityDao.queryCommodityByType(0, 0, 4);
 		String result = JSONArray.fromObject(resultList).toString();
 		System.out.println(result);
 	}

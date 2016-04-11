@@ -29,11 +29,20 @@ public interface CommodityService {
 	
 	/**
 	 * 根据商品名模糊查询商品
-	 * @param name
+	 * @param name	待查询商品名
 	 * @param page
 	 * @param size
 	 * @return
 	 */
 	public String fuzzyQuery(String name, String page, String size);
+	
+	/**
+	 * 根据商品类型查询商品概要信息
+	 * @param type	商品类型码
+	 * @param page
+	 * @param size
+	 * @return
+	 */
+	public String queryByType(String type, String page, String size);
 	
 }

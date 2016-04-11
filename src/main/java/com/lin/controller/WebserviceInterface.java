@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lin.entity.User;
 import com.lin.service.CommodityService;
 import com.lin.service.UserService;
+import com.lin.utils.PropertiesUtil;
 
 /**
  * mvn package -Dmaven.test.failture.ignore=true maven打包
@@ -55,8 +56,11 @@ public class WebserviceInterface {
 	}
 	
 	/**
-	 * 根据商品名，模糊分页查询商品
+	 * 根据商品名模糊分页查询商品，根据商品类型查询
+	 * 当type为-1的时候，则表示根据商品名进行模糊查询，否则为根据商品类型精确查询
+	 * http://localhost:8080/nitshare/serve/commodity.fuzzy?name=a&type=其它&page=0&size=1&callback=back
 	 * @param name
+	 * @param type
 	 * @param page
 	 * @param size
 	 * @param callback
@@ -64,9 +68,16 @@ public class WebserviceInterface {
 	 */
 	@ResponseBody
 	@RequestMapping(value="commodity.fuzzy",produces="text/html;charset=UTF-8", method=RequestMethod.GET)
-	public String fuzzyQuery(String name, String page, String size, String callback){
-		return this.result(callback, this.commodityService.fuzzyQuery(name.trim(), page.trim(), size.trim()));
+	public String fuzzyQuery(String name, String type, String page, String size, String callback){
+		
+		if ("-1".equals(type)){
+			return this.result(callback, this.commodityService.fuzzyQuery(name.trim(), page.trim(), size.trim()));
+		}else{
+			String typeCode = PropertiesUtil.getConfig(type.trim()).trim();
+			return this.result(callback, this.commodityService.queryByType(typeCode, page.trim(), size.trim()));
+		}
 	}
+	
 	/**
 	 * 注册用户
 	 * 

@@ -57,7 +57,17 @@
 			1=1 and cname like  '%'||#name#||'%'
 		LIMIT $page$, $size$
 	</select>
-		
+
+	<select id="typeQuery" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			id, pubDate, cname, price, description, imgUrl0, tradePlace, type
+		FROM
+			commodity
+		WHERE 
+			type = #type#
+		LIMIT #page#, #size#
+	</select>
+	
 	<!-- 分页获取商品信息 -->
 <!-- 	<select id="get" parameterClass="java.util.HashMap" resultMap="CommodityResult">
 		SELECT

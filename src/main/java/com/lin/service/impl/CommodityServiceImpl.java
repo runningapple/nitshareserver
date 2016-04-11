@@ -61,4 +61,19 @@ public class CommodityServiceImpl implements CommodityService {
 		return JSONArray.fromObject(resultList).toString();
 	}
 
+	@Override
+	public String queryByType(String type, String page, String size) {
+		int npage = 0;
+		int nsize = 0;
+		int ntype = 0;
+		
+		if (NumberRegex.isUnNagativeInteger(page) && NumberRegex.isUnNagativeInteger(size) && NumberRegex.isUnNagativeInteger(type)){
+			ntype = Integer.parseInt(type);
+			nsize = Integer.parseInt(size);
+			npage = Integer.parseInt(page) * nsize;
+		}
+		List<HashMap<String, Object>> resultList = this.commodityDao.queryCommodityByType(ntype, npage, nsize);
+		return JSONArray.fromObject(resultList).toString();
+	}
+
 }

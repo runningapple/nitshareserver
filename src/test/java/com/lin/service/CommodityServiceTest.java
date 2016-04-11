@@ -29,4 +29,18 @@ public class CommodityServiceTest {
 		System.out.println(result);
 	}
 	
+	@Test
+	public void fuzzyQueryTest(){
+		String result = cs.fuzzyQuery("a", "0", "1");
+		System.out.println(result);
+	}
+	
+	/**
+	 * 根据商品商品类型查询
+	 */
+	@Test
+	public void typeQuery(){
+		String result = cs.queryByType("0", "0", "1");
+		System.out.println(result);
+	}
 }
