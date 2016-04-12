@@ -43,4 +43,13 @@ public class CommodityServiceTest {
 		String result = cs.queryByType("0", "0", "1");
 		System.out.println(result);
 	}
+	
+	/**
+	 * 根据id查询商品
+	 */
+	@Test
+	public void queryByid(){
+		String result = cs.queryCommodityById("1");
+		System.out.println(result);
+	}
 }

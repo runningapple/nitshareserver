@@ -76,4 +76,14 @@ public class CommodityServiceImpl implements CommodityService {
 		return JSONArray.fromObject(resultList).toString();
 	}
 
+	@Override
+	public String queryCommodityById(String id) {
+		int nid = 0;
+		if (NumberRegex.isUnNagativeInteger(id)){
+			nid = Integer.parseInt(id);
+		}
+		List<HashMap<String, Object>> resultList = this.commodityDao.queryCommodityDetail(nid);
+		return JSONArray.fromObject(resultList).toString();
+	}
+
 }

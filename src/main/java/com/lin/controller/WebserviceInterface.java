@@ -56,6 +56,19 @@ public class WebserviceInterface {
 	}
 	
 	/**
+	 * 根据id获取商品详细信息
+	 * http://localhost:8080/nitshare/serve/commodity.detail?id=1&callback=back
+	 * @param id
+	 * @param callback
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="commodity.detail",produces="text/html;charset=UTF-8", method=RequestMethod.GET)
+	public String queryCommodityDetail(String id, String callback){
+		return this.result(callback, this.commodityService.queryCommodityById(id.trim()));
+	}
+	
+	/**
 	 * 根据商品名模糊分页查询商品，根据商品类型查询
 	 * 当type为-1的时候，则表示根据商品名进行模糊查询，否则为根据商品类型精确查询
 	 * http://localhost:8080/nitshare/serve/commodity.fuzzy?name=a&type=其它&page=0&size=1&callback=back

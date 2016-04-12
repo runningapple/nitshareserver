@@ -70,4 +70,14 @@ public class CommodityDaoTest {
 		String result = JSONArray.fromObject(resultList).toString();
 		System.out.println(result);
 	}
+	
+	/**
+	 * 根据商品id查询商品
+	 */
+	@Test
+	public void queryDetail(){
+		List<HashMap<String, Object>> resultList = commodityDao.queryCommodityDetail(1);
+		String result = JSONArray.fromObject(resultList).toString();
+		System.out.println(result);
+	}
 }

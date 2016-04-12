@@ -41,12 +41,22 @@
 	<!-- 分页获取商品概要信息 -->
 	<select id="getCommodityIntroduction" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT
-			id, pubDate, cname, price, description, imgUrl0, tradePlace, type
+			id, pubDate, cname, price, description, imgUrl0, tradePlace
 		FROM
 			commodity
 		LIMIT #page#, #size#
 	</select>
-
+	
+	<!-- 获取商品详细信息 -->
+	<select id="getCommodityDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			id, pubDate, cname, price, description, imgUrl0,imgUrl1,imgUrl2,tradePlace,uid
+		FROM
+			commodity
+		WHERE
+			id = #id#
+	</select>
+	
 	<!-- 模糊查询商品概要信息 -->
 	<select id="fuzzyQuery" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT

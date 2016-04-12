@@ -45,4 +45,11 @@ public interface CommodityService {
 	 */
 	public String queryByType(String type, String page, String size);
 	
+	/**
+	 * 根据商品id查询商品详细信息
+	 * @param id
+	 * @return
+	 */
+	public String queryCommodityById(String id);
+	
 }

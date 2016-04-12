@@ -22,6 +22,12 @@ public interface CommodityDao {
 	 */
 	public List<HashMap<String, Object>> queryCommodityIntroduction(int page, int size);
 	
+	/**
+	 * 根据商品id获取商品详细信息
+	 * @param id
+	 * @return
+	 */
+	public List<HashMap<String, Object>> queryCommodityDetail(int id);
 	
 	/**
 	 * 添加商品
