@@ -122,7 +122,7 @@ public class WebserviceInterface {
 	/**
 	 * 验证账号唯一性
 	 * 
-	 * http://localhost:8080/nitshare/serve/user.login?account=yyy&callback=back
+	 * http://localhost:8080/nitshare/serve/user.check?account=yyy&callback=back
 	 * @param account
 	 * @param callback
 	 * @return
@@ -133,6 +133,18 @@ public class WebserviceInterface {
 		return this.result(callback, this.userService.checkAccount(account));
 	}
 	
+	/**
+	 * 判断用户是否已经登录过，用户登录记录存储在redis里
+	 * @param account
+	 * @param callback
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/user.islogin", produces="text/html;charset=UTF-8", method = RequestMethod.GET)
+	public String checkUserInRedis(String account, String callback){
+		
+		return null;
+	}
 	
 	/**
 	 * 包装函数

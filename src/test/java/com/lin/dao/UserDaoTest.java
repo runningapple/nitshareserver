@@ -27,20 +27,29 @@ public class UserDaoTest {
 	@Autowired
 	private UserDao userDao;
 	
+	/**
+	 * 添加用户测试
+	 */
 	@Test
 	public void addTest(){
-		User user = new User(0, "yyy","yyy", "yyy",0,0,"1572654665","a@b.com","851522","asdf");
+		User user = new User(0, "yyy","yyy", "yyy",0,0,"1572654665","879845","a@b.com","asdf");
 		boolean result = userDao.addUser(user);
 		System.out.println(result);
 	}
 	
+	/**
+	 * 根据账号和密码查询测试
+	 */
 	@Test
 	public void findTest(){
-		List<HashMap<String, Object>> resultList = userDao.queryUserByAP("yyy", "yyy");
+		List<HashMap<String, Object>> resultList = userDao.queryUserByAP("ac@b.com", "yyy");
 		String result = JSONArray.fromObject(resultList).toString();
 		System.out.println(result);
 	}
 	
+	/**
+	 * 判断账号是否存在测试
+	 */
 	@Test
 	public void checkTest(){
 		List<HashMap<String, Object>> resultList = userDao.isExist("yayy");
