@@ -38,8 +38,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String registerUser(User user) {
 		boolean result = this.userDao.addUser(user);
-		String resultString = result == true ? "success" : "fail";
-		return resultString;
+		List<HashMap<String, Object>> resultList = null;
+		if (result == true){
+			resultList = this.userDao.queryUserByAP(user.getAccount(), user.getPwd());
+		}
+		return JSONArray.fromObject(resultList).toString();
 	}
 
 	@Override

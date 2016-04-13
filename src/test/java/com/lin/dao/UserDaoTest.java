@@ -32,7 +32,11 @@ public class UserDaoTest {
 	 */
 	@Test
 	public void addTest(){
-		User user = new User(0, "yyy","yyy", "yyy",0,0,"1572654665","879845","a@b.com","asdf");
+//		User user = new User(0, "yyy","yyy", "yyy",0,0,"1572654665","879845","a@b.com","asdf");
+		User user = new User();
+		user.setAccount("runningapple@abc.com");
+		user.setNickname("linzjx");
+		user.setPwd("abc");
 		boolean result = userDao.addUser(user);
 		System.out.println(result);
 	}

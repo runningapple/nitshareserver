@@ -44,8 +44,6 @@
 		</property>
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
-
 	
 	<!-- 导入redis配置 -->
 	<!-- <import resource="spring-redis.xml"/> -->

@@ -50,23 +50,23 @@ public class Commodity{
 	private String imgUrl0;
 	
 	/*商品展示图片1*/
-	private String imgUrl1;
+	private String imgUrl1="";
 	
 	/*商品展示图片2*/
-	private String imgUrl2;
+	private String imgUrl2="";
 	
 	/*商品描述*/
-	private String description;
+	private String description="该用户太懒，还没有添加描述";
 	
 	/*交易地点*/
-	private String tradePlace;
+	private String tradePlace="";
 	
 	/*商品类型*/
-	private Integer type;
+	private Integer type=0;
 	
-	private String qq;
+	private String qq="";
 	
-	private String mobile;
+	private String mobile="";
 	
 	/*是否可以讲价*/
 	private Integer bargain;
@@ -75,7 +75,7 @@ public class Commodity{
 	private Integer state;
 	
 	/*点击量*/
-	private Integer click;
+	private Integer click=0;
 	
 	/*消息id*/
 	private Integer mid;

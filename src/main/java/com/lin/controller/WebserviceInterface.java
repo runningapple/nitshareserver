@@ -1,13 +1,22 @@
 package com.lin.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONArray;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.lin.entity.User;
 import com.lin.service.CommodityService;
+import com.lin.service.UploadFileService;
 import com.lin.service.UserService;
 import com.lin.utils.PropertiesUtil;
 
@@ -27,6 +36,9 @@ public class WebserviceInterface {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UploadFileService uploadFileService;
 	
 	/**
 	 * 测试demo
@@ -94,7 +106,7 @@ public class WebserviceInterface {
 	/**
 	 * 注册用户
 	 * 
-	 * http://localhost:8080/nitshare/serve/user.register?nickname=tom&password=123&phone=123&qq=33&mail=a@b.com&callback=back
+	 * http://localhost:8080/nitshare/serve/user.register?nickname=tom&pwd=123&account=adf&callback=back
 	 * @param user
 	 * @param callback
 	 * @return
@@ -128,7 +140,7 @@ public class WebserviceInterface {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="/user.check", produces="text/html;charset=UTF-8", method = RequestMethod.GET)
+	@RequestMapping(value="user.check", produces="text/html;charset=UTF-8", method = RequestMethod.GET)
 	public String checkAccount(String account, String callback){
 		return this.result(callback, this.userService.checkAccount(account));
 	}
@@ -140,10 +152,25 @@ public class WebserviceInterface {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="/user.islogin", produces="text/html;charset=UTF-8", method = RequestMethod.GET)
+	@RequestMapping(value="user.islogin", produces="text/html;charset=UTF-8", method = RequestMethod.GET)
 	public String checkUserInRedis(String account, String callback){
 		
 		return null;
+	}
+	
+	/**
+	 * 上传文件
+	 * http://localhost:8080/nitshare/serve/uploadfile
+	 * @param filename
+	 * @param clientfile
+	 * @param callback
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="uploadfile", method=RequestMethod.POST)
+	public String uploadFile(@RequestParam("filepic") MultipartFile filepic){
+		uploadFileService.uploadFile("./", filepic, "test.txt");
+		return "success";
 	}
 	
 	/**

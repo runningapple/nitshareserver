@@ -34,21 +34,21 @@ public class User {
     private String pwd;
     
     /*分数*/
-    private Integer score;
+    private Integer score = 0;
     
     /*等级*/
-    private Integer rank;
+    private Integer rank = 0;
     
     /*手机*/
-    private String mobile;
+    private String mobile="";
     
     /*邮箱*/
-    private String mail;
+    private String mail="";
     
-    private String qq;
+    private String qq="";
     
     /*头像*/
-	private String headimg;
+	private String headimg="";
 
 	public User(){
 		super();
