@@ -1,6 +1,6 @@
 package com.lin.test;
 
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,11 +30,17 @@ public class RedisTest {
 	User user = new User();
 	
 	/**
-	 * 测试保存，set
+	 * 添加测试，set
 	 */
 	@Test
-	public void save(){
-
+	public void add(){
+		user.setId(0);
+		user.setAccount("12241");
+		user.setHeadimg("img");
+		user.setMail("admin@admin.com");
+		user.setPwd("dfd");
+		user.setNickname("linzj");
+		userRedis.addOrUpdate(user);
 	}
 	
 	/**
@@ -42,6 +48,9 @@ public class RedisTest {
 	 */
 	@Test
 	public void read(){
+		user = userRedis.loadUser("0");
+		System.out.println(user);
+		assertEquals("linzj",user.getNickname());
 	}
 	
 	/**
@@ -49,8 +58,8 @@ public class RedisTest {
 	 */
 	@Test
 	public void delete(){
-//		userRedis.delete(id);
-//		user = userRedis.load(id);
-//		assertNull(user);
+		userRedis.deleteUserById("0");
+		user = userRedis.loadUser("0");
+		assertNull(user);
 	}
 }

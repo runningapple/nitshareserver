@@ -1,5 +1,7 @@
 package com.lin.entity;
 
+import java.io.Serializable;
+
 
 /*
   `id` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,
@@ -20,7 +22,12 @@ package com.lin.entity;
  * @author linzj
  * @createTime 2016年4月1日  下午3:38:31
  */
-public class User {
+public class User implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4804386890289174631L;
 
 	private Integer id;
 	
@@ -31,7 +38,7 @@ public class User {
     private String account;
     
     /*密码*/
-    private String pwd;
+    private transient String pwd;
     
     /*分数*/
     private Integer score = 0;
@@ -48,7 +55,7 @@ public class User {
     private String qq="";
     
     /*头像*/
-	private String headimg="";
+	private transient String headimg="";
 
 	public User(){
 		super();
@@ -149,6 +156,12 @@ public class User {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-    
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", nickname=" + nickname + ", account="
+				+ account + ", score=" + score + ", rank=" + rank + ", mobile="
+				+ mobile + ", mail=" + mail + ", qq=" + qq + "]";
+	}
     
 }
