@@ -15,7 +15,7 @@ import com.lin.redis.UserRedis;
  * @author linzj
  * @createTime 2016年4月1日  下午4:19:21
  */
-@Service
+@Service("userRedis")
 public class UserRedisImpl implements UserRedis{
 	
 	@Autowired

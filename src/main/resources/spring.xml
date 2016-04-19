@@ -46,6 +46,6 @@
 	</bean>
 	
 	<!-- 导入redis配置 -->
-	<!-- <import resource="spring-redis.xml"/> -->
+	<import resource="spring-redis.xml"/>
 		
 </beans>

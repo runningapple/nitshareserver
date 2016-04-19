@@ -1,10 +1,5 @@
 package com.lin.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
-import net.sf.json.JSONArray;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.lin.entity.User;
 import com.lin.service.CommodityService;
@@ -168,13 +162,14 @@ public class WebserviceInterface {
 	 */
 	@ResponseBody
 	@RequestMapping(value="uploadfile", method=RequestMethod.POST)
-	public String uploadFile(@RequestParam("filepic") MultipartFile filepic){
-		uploadFileService.uploadFile("./", filepic, "test.txt");
-		return "success";
+	public String uploadFile(@RequestParam("filepic") MultipartFile filepic, String callback){
+		System.out.println(callback);
+		uploadFileService.uploadFile("./", filepic, "test.jpg");
+		return this.result(callback,"success");
 	}
 	
 	/**
-	 * 包装函数
+	 * 包装方法
 	 * @param callbackFunction
 	 * @param resultData
 	 * @return
