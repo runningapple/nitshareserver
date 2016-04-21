@@ -12,7 +12,6 @@ import com.lin.entity.User;
 import com.lin.service.CommodityService;
 import com.lin.service.UploadFileService;
 import com.lin.service.UserService;
-import com.lin.utils.PropertiesUtil;
 
 /**
  * mvn package -Dmaven.test.failture.ignore=true maven打包
@@ -92,8 +91,8 @@ public class WebserviceInterface {
 		if ("-1".equals(type)){
 			return this.result(callback, this.commodityService.fuzzyQuery(name.trim(), page.trim(), size.trim()));
 		}else{
-			String typeCode = PropertiesUtil.getConfig(type.trim()).trim();
-			return this.result(callback, this.commodityService.queryByType(typeCode, page.trim(), size.trim()));
+//			String typeCode = PropertiesUtil.getConfig(type.trim()).trim();
+			return this.result(callback, this.commodityService.queryByType(type.trim(), page.trim(), size.trim()));
 		}
 	}
 	
