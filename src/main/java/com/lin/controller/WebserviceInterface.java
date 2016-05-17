@@ -62,7 +62,7 @@ public class WebserviceInterface {
 	
 	/**
 	 * 根据id获取商品详细信息
-	 * http://localhost:8080/nitshare/serve/commodity.detail?id=1&callback=back
+	 * http://localhost:8080/nitshareserver/serve/commodity.detail?id=1&callback=back
 	 * @param id
 	 * @param callback
 	 * @return
@@ -99,7 +99,7 @@ public class WebserviceInterface {
 	/**
 	 * 注册用户
 	 * 
-	 * http://localhost:8080/nitshare/serve/user.register?nickname=tom&pwd=123&account=adf&callback=back
+	 * http://localhost:8080/nitshareserver/serve/user.register?nickname=tom&pwd=123&account=adf&callback=back
 	 * @param user
 	 * @param callback
 	 * @return
@@ -112,7 +112,7 @@ public class WebserviceInterface {
 	
 	/**
 	 * 用户登录
-	 * http://localhost:8080/nitshare/serve/user.login?account=yyy&pwd=yyy&callback=back
+	 * http://localhost:8080/nitshareserver/serve/user.login?account=yyy&pwd=yyy&callback=back
 	 * @param account	账号
 	 * @param password	密码
 	 * @param callback
