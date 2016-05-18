@@ -1,5 +1,10 @@
 package com.lin.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -152,8 +157,27 @@ public class WebserviceInterface {
 	}
 	
 	/**
+	 * 文件上传测试
+	 * http://localhost:8080/nitshareserver/serve/fileupload
+	 * @param name
+	 * @param myfiles
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+//	@ResponseBody
+	@RequestMapping(value="fileupload", method=RequestMethod.POST,produces="text/html;charset=utf-8")
+	public void addPic(HttpServletResponse response,HttpServletRequest request,
+			@RequestParam(value="file", required=false) MultipartFile file) throws IOException{
+		System.out.println(file.getOriginalFilename());
+		response.getWriter().write("success");
+		response.setHeader("Access-Control-Allow-Origin", "*");
+//		return "success";
+	}
+	
+	/**
 	 * 上传文件
-	 * http://localhost:8080/nitshare/serve/uploadfile
+	 * http://localhost:8080/nitshareserver/serve/uploadfile
 	 * @param filename
 	 * @param clientfile
 	 * @param callback
