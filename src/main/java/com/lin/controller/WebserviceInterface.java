@@ -17,6 +17,7 @@ import com.lin.entity.User;
 import com.lin.service.CommodityService;
 import com.lin.service.UploadFileService;
 import com.lin.service.UserService;
+import com.lin.utils.FileUtil;
 
 /**
  * mvn package -Dmaven.test.failture.ignore=true maven打包
@@ -169,7 +170,13 @@ public class WebserviceInterface {
 	@RequestMapping(value="fileupload", method=RequestMethod.POST,produces="text/html;charset=utf-8")
 	public void addPic(HttpServletResponse response,HttpServletRequest request,
 			@RequestParam(value="file", required=false) MultipartFile file) throws IOException{
-		System.out.println(file.getOriginalFilename());
+		
+		String fileName = file.getOriginalFilename();
+		
+		if (file.getSize() > 0){
+			FileUtil.saveFile(fileName, file);
+		}
+		
 		response.getWriter().write("success");
 		response.setHeader("Access-Control-Allow-Origin", "*");
 //		return "success";

@@ -13,7 +13,7 @@ import java.util.Properties;
 public class PropertiesUtil {
 	
 	private static Properties properties = null;
-	public static final String DEFAULT_CONFIG_FILE = "typemapping.properties";
+	public static final String DEFAULT_CONFIG_FILE = "imgurl.properties";
 	
 	public static final Properties loadProperties(){
 		return loadProperties(DEFAULT_CONFIG_FILE);

@@ -6,6 +6,6 @@ public class PropertiesUtilTest {
 	
 	@Test
 	public void readTest(){
-		System.out.println(PropertiesUtil.getConfig("热门推荐").trim());
+		System.out.println(PropertiesUtil.getConfig("savePicUrl").trim());
 	}
 }
