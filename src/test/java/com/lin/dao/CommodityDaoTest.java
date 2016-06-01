@@ -52,6 +52,17 @@ public class CommodityDaoTest {
 	}
 	
 	/**
+	 * 商品更新测试
+	 */
+	@Test
+	public void updateCommodityTest(){
+		Commodity cd = new Commodity(2,1,new Date(),"test1",
+				3.2,"test1","test","test","test","test",0,"test","test",0,0,0,0);
+		boolean result = commodityDao.addCommodity(cd);
+		System.out.println(result);
+	}
+	
+	/**
 	 * 根据商品名模糊查询测试
 	 */
 	@Test

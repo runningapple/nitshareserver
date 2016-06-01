@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : test
-Source Server Version : 50519
+Source Server         : aaa
+Source Server Version : 50528
 Source Host           : localhost:3306
 Source Database       : nitshare
 
 Target Server Type    : MYSQL
-Target Server Version : 50519
+Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2016-04-08 10:16:25
+Date: 2016-06-01 14:39:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -53,30 +53,29 @@ CREATE TABLE `comment` (
 -- ----------------------------
 DROP TABLE IF EXISTS `commodity`;
 CREATE TABLE `commodity` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `pubDate` datetime NOT NULL COMMENT '商品发布日期',
-  `cname` varchar(255) NOT NULL COMMENT '商品名',
-  `price` decimal(10,2) NOT NULL COMMENT '商品价格',
+  `cname` varchar(255) DEFAULT NULL COMMENT '商品名',
+  `price` decimal(10,2) DEFAULT NULL COMMENT '商品价格',
   `description` varchar(255) DEFAULT NULL COMMENT '商品描述',
   `imgUrl0` varchar(255) NOT NULL COMMENT '图片地址',
   `imgUrl1` varchar(255) DEFAULT NULL COMMENT '图片地址',
   `imgUrl2` varchar(255) DEFAULT NULL COMMENT '图片地址',
-  `uid` bigint(20) NOT NULL COMMENT '用户id',
-  `tradePlace` varchar(100) NOT NULL COMMENT '交易地址',
-  `type` int(20) NOT NULL COMMENT '商品类型',
+  `uid` int(20) NOT NULL COMMENT '用户id',
+  `tradePlace` varchar(100) DEFAULT NULL COMMENT '交易地址',
+  `type` int(20) DEFAULT NULL COMMENT '商品类型',
   `qq` varchar(50) DEFAULT NULL,
   `mobile` varchar(50) DEFAULT NULL,
-  `bargain` int(10) NOT NULL COMMENT '是否可以讲价',
-  `state` int(10) NOT NULL COMMENT '商品状态',
-  `click` bigint(255) NOT NULL DEFAULT '0' COMMENT '商品点击量',
-  `mid` bigint(20) NOT NULL DEFAULT '0' COMMENT '商品消息id',
+  `bargain` int(10) DEFAULT NULL COMMENT '是否可以讲价',
+  `state` int(10) DEFAULT NULL COMMENT '商品状态',
+  `click` bigint(255) DEFAULT '0' COMMENT '商品点击量',
+  `mid` int(20) DEFAULT '0' COMMENT '商品消息id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of commodity
 -- ----------------------------
-INSERT INTO `commodity` VALUES ('0', '2016-04-04 12:43:07', '连衣裙', '188.80', '新品连衣裙，没穿过', 'http://ww2.sinaimg.cn/mw690/ad108d28gw1f2lsupkuekj204g04gt8l.jpg', 'test', 'test', '0', '二期', '0', 'test', 'test', '0', '0', '0', '0');
 INSERT INTO `commodity` VALUES ('1', '2016-04-05 09:18:19', '999真钻戒', '888.88', '999真钻戒', 'http://ww4.sinaimg.cn/mw690/ad108d28gw1f2lsuot8o8j204g04gjr8.jpg', 'test', 'test', '1', '八分钟', '0', 'test', 'test', '0', '0', '0', '0');
 INSERT INTO `commodity` VALUES ('2', '2016-04-05 11:07:08', 'Polo衫', '89.00', 'Polo衫', 'http://ww4.sinaimg.cn/mw690/ad108d28gw1f2lsup8m4pj204g04gglg.jpg', 'url', 'url', '1', '三期', '0', '850657012', '14556413', '0', '0', '0', '0');
 INSERT INTO `commodity` VALUES ('3', '2016-04-05 11:07:08', '白色卫衣', '125.00', '白色卫衣', 'http://ww4.sinaimg.cn/mw690/ad108d28gw1f2lsuomebgj204g04gdfp.jpg', 'url', 'url', '1', '石磷', '0', '850657012', '14556413', '0', '0', '0', '0');
@@ -85,6 +84,9 @@ INSERT INTO `commodity` VALUES ('5', '2016-04-05 11:07:08', '水上漂跑鞋', '
 INSERT INTO `commodity` VALUES ('6', '2016-04-05 11:07:08', '羽绒服', '555.00', '羽绒服', 'http://ww3.sinaimg.cn/mw690/ad108d28gw1f2lsun500bj204g04ggli.jpg', 'url', 'url', '1', '一期', '0', '850657012', '14556413', '0', '0', '0', '0');
 INSERT INTO `commodity` VALUES ('7', '2016-04-05 11:07:08', '小西装', '666.00', '小西装', 'http://ww3.sinaimg.cn/mw690/ad108d28gw1f2lsumraohj204g04gglg.jpg', 'url', 'url', '1', '学府苑', '0', '850657012', '14556413', '0', '0', '0', '0');
 INSERT INTO `commodity` VALUES ('8', '2016-04-05 11:07:08', '衬衫', '78.00', '衬衫', 'http://ww4.sinaimg.cn/mw690/ad108d28gw1f2lsumexm9j204g04g3ye.jpg', 'url', 'url', '1', '图书馆', '0', '850657012', '14556413', '0', '0', '0', '0');
+INSERT INTO `commodity` VALUES ('9', '2016-04-04 12:43:07', '连衣裙', '188.80', '新品连衣裙，没穿过', 'http://ww2.sinaimg.cn/mw690/ad108d28gw1f2lsupkuekj204g04gt8l.jpg', 'test', 'test', '0', '二期', '0', 'test', 'test', '0', '0', '0', '0');
+INSERT INTO `commodity` VALUES ('10', '2016-06-01 11:31:49', 'test', '232.00', 'test', 'http://127.0.0.1:8080/pic/UnnamedQQScreenshot20160120210202.jpg', '', '', '1', '', '0', '', '', null, null, '0', null);
+INSERT INTO `commodity` VALUES ('11', '2016-06-01 13:31:24', 'aa', '234.00', 'bbb', 'http://127.0.0.1:8080/pic/UnnamedQQScreenshot20160120210113.jpg', '', '', '1', '', '0', '', '', '0', null, '0', null);
 
 -- ----------------------------
 -- Table structure for user
@@ -102,8 +104,10 @@ CREATE TABLE `user` (
   `score` bigint(255) unsigned zerofill NOT NULL,
   `rank` int(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('00000000000000000001', 'test', 'test', '123', 'fa', 'a', 'aaa', null, '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000', '0');
+INSERT INTO `user` VALUES ('00000000000000000002', 'test', '*94BDCEBE19083CE2A1F959FD02F964C7AF4CFC29', '', '', '', 'test', '', '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000', '0');

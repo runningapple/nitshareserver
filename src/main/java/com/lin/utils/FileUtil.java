@@ -61,5 +61,14 @@ public class FileUtil {
 		}catch (Exception e){
 			e.printStackTrace();
 		}
+		/**
+		 * 修改图片尺寸
+		 */
+		try {
+			ImageUtil.resizeImage(picDir+"/"+fileName, picDir+"/"+fileName, 160, 160);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

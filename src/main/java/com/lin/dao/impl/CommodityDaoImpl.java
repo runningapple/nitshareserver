@@ -107,5 +107,45 @@ public class CommodityDaoImpl implements CommodityDao {
 		return result;
 	}
 
+	@Override
+	public boolean updateCommodity(Commodity commodity) {
+		boolean result = true;
+		try{
+			this.sqlMapClient.update("Commodity.update", commodity);
+		} catch(SQLException ex){
+			result = false;
+			ex.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<HashMap<String, Integer>> findMaxId(Commodity commodity) {
+		List<HashMap<String, Integer>> result = new ArrayList<HashMap<String,Integer>>();
+		HashMap<String, Object> codMap = new HashMap<String, Object>();
+		codMap.put("uid", commodity.getUid());
+		try{
+			result = this.sqlMapClient.queryForList("Commodity.findmaxid", codMap);
+		} catch (SQLException ex){
+			ex.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<HashMap<String, Object>> queryCommodityByDate(int page,
+			int size) {
+		List<HashMap<String, Object>> result = new ArrayList<HashMap<String,Object>>();
+		HashMap<String, Integer> codMap = new HashMap<String, Integer>();
+		codMap.put("page", page);
+		codMap.put("size", size);
+		try{
+			result = this.sqlMapClient.queryForList("Commodity.date", codMap);
+		} catch (SQLException ex){
+			ex.printStackTrace();
+		}
+		return result;
+	}
+
 
 }

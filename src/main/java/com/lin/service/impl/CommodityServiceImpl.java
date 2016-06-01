@@ -1,5 +1,6 @@
 package com.lin.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -83,6 +84,35 @@ public class CommodityServiceImpl implements CommodityService {
 			nid = Integer.parseInt(id);
 		}
 		List<HashMap<String, Object>> resultList = this.commodityDao.queryCommodityDetail(nid);
+		return JSONArray.fromObject(resultList).toString();
+	}
+
+	@Override
+	public String updateCommodity(Commodity commodity) {
+		
+		List<HashMap<String, Integer>> resultList = this.commodityDao.findMaxId(commodity);
+		int id = resultList.get(0).get("id");
+		commodity.setId(id);
+		
+		boolean result = this.commodityDao.updateCommodity(commodity);
+		String resultString = result == true ? "success" : "false";
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
+		HashMap<String, String> hashMap = new HashMap<String, String>();
+		hashMap.put("result", resultString);
+		list.add(hashMap);
+		return JSONArray.fromObject(list).toString();
+	}
+
+	@Override
+	public String queryCommodityByDate(String page, String size) {
+		int npage = 0;
+		int nsize = 0;
+		
+		if (NumberRegex.isUnNagativeInteger(page) && NumberRegex.isUnNagativeInteger(size)){
+			nsize = Integer.parseInt(size);
+			npage = Integer.parseInt(page) * nsize;
+		}
+		List<HashMap<String, Object>> resultList = this.commodityDao.queryCommodityByDate(npage, nsize);
 		return JSONArray.fromObject(resultList).toString();
 	}
 

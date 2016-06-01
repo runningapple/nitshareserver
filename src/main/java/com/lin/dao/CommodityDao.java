@@ -17,6 +17,25 @@ import com.lin.entity.Commodity;
 public interface CommodityDao {
 	
 	/**
+	 * 添加商品信息
+	 * @param commodity
+	 * @return
+	 */
+	public boolean updateCommodity(Commodity commodity);
+	
+	/**
+	 * 查找最大商品id
+	 * @return
+	 */
+	public List<HashMap<String, Integer>> findMaxId(Commodity commodity);
+	
+	/**
+	 * 获取最新商品
+	 * @return
+	 */
+	public List<HashMap<String, Object>> queryCommodityByDate(int page, int size);
+	
+	/**
 	 * 分页获取商品,展示商品
 	 * @return
 	 */

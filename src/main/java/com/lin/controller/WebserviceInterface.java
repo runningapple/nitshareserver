@@ -1,9 +1,18 @@
 package com.lin.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +22,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.lin.entity.Commodity;
 import com.lin.entity.User;
 import com.lin.service.CommodityService;
 import com.lin.service.UploadFileService;
 import com.lin.service.UserService;
 import com.lin.utils.FileUtil;
+import com.lin.utils.PropertiesUtil;
 
 /**
  * mvn package -Dmaven.test.failture.ignore=true maven打包
@@ -67,6 +78,19 @@ public class WebserviceInterface {
 	}
 	
 	/**
+	 * 获取最新商品信息
+	 * @param page
+	 * @param size
+	 * @param callback
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="commodity.date",produces="text/html;charset=UTF-8", method=RequestMethod.GET)
+	public String queryCommodityByDate(String page, String size, String callback){
+		return this.result(callback, this.commodityService.queryCommodityByDate(page.trim(), size.trim()));
+	}
+	
+	/**
 	 * 根据id获取商品详细信息
 	 * http://localhost:8080/nitshareserver/serve/commodity.detail?id=1&callback=back
 	 * @param id
@@ -93,14 +117,34 @@ public class WebserviceInterface {
 	@ResponseBody
 	@RequestMapping(value="commodity.fuzzy",produces="text/html;charset=UTF-8", method=RequestMethod.GET)
 	public String fuzzyQuery(String name, String type, String page, String size, String callback){
+		String resultName = "";
+		try {
+			resultName = URLDecoder.decode(name.trim(), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		if ("-1".equals(type)){
-			return this.result(callback, this.commodityService.fuzzyQuery(name.trim(), page.trim(), size.trim()));
+		if ("-1".equals(type.trim())){
+			return this.result(callback, this.commodityService.fuzzyQuery(resultName.trim(), page.trim(), size.trim()));
 		}else{
 //			String typeCode = PropertiesUtil.getConfig(type.trim()).trim();
 			return this.result(callback, this.commodityService.queryByType(type.trim(), page.trim(), size.trim()));
 		}
 	}
+	
+	/**
+	 * 添加商品信息
+	 * @param commodity
+	 * @param callback
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="commodity.add",produces="text/html;charset=UTF-8", method=RequestMethod.GET)
+	public String addCommodityDetail(Commodity commodity, String callback){
+		return this.result(callback, this.commodityService.updateCommodity(commodity));
+	}
+	
 	
 	/**
 	 * 注册用户
@@ -158,7 +202,7 @@ public class WebserviceInterface {
 	}
 	
 	/**
-	 * 文件上传测试
+	 * 文件上传
 	 * http://localhost:8080/nitshareserver/serve/fileupload
 	 * @param name
 	 * @param myfiles
@@ -169,17 +213,33 @@ public class WebserviceInterface {
 //	@ResponseBody
 	@RequestMapping(value="fileupload", method=RequestMethod.POST,produces="text/html;charset=utf-8")
 	public void addPic(HttpServletResponse response,HttpServletRequest request,
-			@RequestParam(value="file", required=false) MultipartFile file) throws IOException{
+			@RequestParam(value="file", required=false) MultipartFile file,
+			@RequestParam(value="uid", required=false) String uid) throws IOException{
 		
-		String fileName = file.getOriginalFilename();
-		
+		String fileName = file.getOriginalFilename().replaceAll(" ", "");
+		System.out.println(fileName);
 		if (file.getSize() > 0){
 			FileUtil.saveFile(fileName, file);
 		}
 		
-		response.getWriter().write("success");
+		String showDir = PropertiesUtil.getConfig("getPicUrl")+"/" + fileName;
+		Commodity commodity = new Commodity();
+		commodity.setImgUrl0(showDir);
+		commodity.setUid(Integer.parseInt(uid.trim()));
+		commodity.setPubDate(new Date());
+		commodityService.addCommodity(commodity);
+		
+		/**
+		 * 将结果返回前端
+		 */
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
+		HashMap<String, String> hashMap = new HashMap<String, String>();
+		hashMap.put("showDir", showDir);
+		list.add(hashMap);
+		String result = JSONArray.fromObject(list).toString();
+		response.getWriter().append(result);
+		response.setContentType("application/json; charset=utf-8");
 		response.setHeader("Access-Control-Allow-Origin", "*");
-//		return "success";
 	}
 	
 	/**

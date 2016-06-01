@@ -21,11 +21,26 @@ public interface CommodityService {
 	public String queryCommodityByPage(String page, String size);
 	
 	/**
+	 * 获取最新商品
+	 * @param page
+	 * @param size
+	 * @return
+	 */
+	public String queryCommodityByDate(String page, String size);
+	
+	/**
 	 * 添加商品
 	 * @param commodity
 	 * @return
 	 */
 	public String addCommodity(Commodity commodity);
+	
+	/**
+	 * 更新商品信息
+	 * @param commodity
+	 * @return
+	 */
+	public String updateCommodity(Commodity commodity);
 	
 	/**
 	 * 根据商品名模糊查询商品

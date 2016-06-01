@@ -38,6 +38,30 @@
 		)
 	</insert>
 	
+	<update id="update" parameterClass="Commodity">
+		UPDATE commodity
+		SET cname = #cname#,
+		 price = #price#,
+		 description = #description#,
+		 bargain = #bargain#
+		WHERE
+			id = #id#
+	</update>
+	
+	<select id="date" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			*
+		FROM
+			commodity
+		ORDER BY
+			pubDate DESC
+		LIMIT #page#, #size#
+	</select>
+	
+	<select id="findmaxid" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT MAX(id) id FROM commodity where uid = #uid#
+	</select>
+	
 	<!-- 分页获取商品概要信息 -->
 	<select id="getCommodityIntroduction" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT
@@ -64,7 +88,7 @@
 		FROM
 			commodity
 		WHERE 
-			1=1 and cname like  '%'||#name#||'%'
+			1=1 and cname like  concat('%', $name$, '%') 
 		LIMIT $page$, $size$
 	</select>
 

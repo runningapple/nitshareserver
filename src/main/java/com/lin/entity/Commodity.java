@@ -244,5 +244,16 @@ public class Commodity{
 		this.mid = mid;
 	}
 
+	@Override
+	public String toString() {
+		return "Commodity [id=" + id + ", uid=" + uid + ", pubDate=" + pubDate
+				+ ", cname=" + cname + ", price=" + price + ", imgUrl0="
+				+ imgUrl0 + ", imgUrl1=" + imgUrl1 + ", imgUrl2=" + imgUrl2
+				+ ", description=" + description + ", tradePlace=" + tradePlace
+				+ ", type=" + type + ", qq=" + qq + ", mobile=" + mobile
+				+ ", bargain=" + bargain + ", state=" + state + ", click="
+				+ click + ", mid=" + mid + "]";
+	}
+
 	
 }
