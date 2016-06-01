@@ -3,6 +3,7 @@ package com.lin.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -119,6 +120,7 @@ public class WebserviceInterface {
 	public String fuzzyQuery(String name, String type, String page, String size, String callback){
 		String resultName = "";
 		try {
+//			System.out.println(URLEncoder.encode(name,"UTF-8"));
 			resultName = URLDecoder.decode(name.trim(), "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
@@ -217,7 +219,7 @@ public class WebserviceInterface {
 			@RequestParam(value="uid", required=false) String uid) throws IOException{
 		
 		String fileName = file.getOriginalFilename().replaceAll(" ", "");
-		System.out.println(fileName);
+//		System.out.println(fileName);
 		if (file.getSize() > 0){
 			FileUtil.saveFile(fileName, file);
 		}

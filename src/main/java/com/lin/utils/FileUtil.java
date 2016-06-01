@@ -54,7 +54,7 @@ public class FileUtil {
 		}
 		
 		try{
-			FileOutputStream out = new FileOutputStream(picDir + "\\" + fileName);
+			FileOutputStream out = new FileOutputStream(picDir + "/" + fileName);
 			out.write(file.getBytes());
 			out.flush();
 			out.close();
