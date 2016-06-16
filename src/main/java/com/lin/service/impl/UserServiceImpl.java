@@ -1,5 +1,6 @@
 package com.lin.service.impl;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,6 +52,20 @@ public class UserServiceImpl implements UserService {
 		List<HashMap<String, Object>> resultList = this.userDao.isExist(account);
 		
 		return JSONArray.fromObject(resultList).toString();
+	}
+
+	@Override
+	public String searchUser(String id) {
+		
+		List<HashMap<String, Object>> resultList = this.userDao.queryUserById(id);
+		
+		return JSONArray.fromObject(resultList).toString();
+	}
+
+	@Override
+	public String updateUser(User user) {
+		boolean result = this.userDao.updateUser(user);
+		return result == true ? "success" : "fail";
 	}
 	
 }

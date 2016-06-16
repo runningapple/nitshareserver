@@ -64,4 +64,29 @@ public class UserDaoImpl implements UserDao {
 		return result;
 	}
 
+	@Override
+	public List<HashMap<String, Object>> queryUserById(String id) {
+		List<HashMap<String, Object>> result = new ArrayList<HashMap<String,Object>>();
+		HashMap<String, String> codMap = new HashMap<String, String>();
+		codMap.put("id", id);
+		try{
+			result = this.sqlMapClient.queryForList("User.getUserDetail", codMap);
+		} catch (SQLException ex){
+			ex.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public boolean updateUser(User user) {
+		boolean result = true;
+		try{
+			this.sqlMapClient.update("User.update", user);
+		} catch(SQLException ex){
+			result = false;
+			ex.printStackTrace();
+		}
+		return result;
+	}
+
 }

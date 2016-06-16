@@ -74,7 +74,7 @@
 	<!-- 获取商品详细信息 -->
 	<select id="getCommodityDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT
-			id, pubDate, cname, price, description, imgUrl0,imgUrl1,imgUrl2,tradePlace,uid,
+			id, pubDate, cname, price, description, imgUrl0,imgUrl1,imgUrl2,tradePlace,uid 
 		FROM
 			commodity
 		WHERE

@@ -21,11 +21,18 @@ public class UserRedisTest {
 	 */
 	@Test
 	public void addUserTest(){
-		User user = new User();
-		user.setId(41545);
-		user.setAccount("aaa");
-		userRedis.addOrUpdate(user);
+		userRedis.addOrUpdate("123");
 	}
 	
+	@Test
+	public void isLogin(){
+		boolean result = userRedis.loadUser("123");
+		System.out.println(result);
+	}
+	
+	@Test
+	public void delTest(){
+		userRedis.deleteUserById("123");
+	}
 	
 }

@@ -35,4 +35,19 @@ public interface UserDao {
 	 * @return
 	 */
 	public List<HashMap<String, Object>> isExist(String account);
+	
+	/**
+	 * 通过id查询用户信息
+	 * @param id
+	 * @return
+	 */
+	public List<HashMap<String, Object>> queryUserById(String id);
+	
+	/**
+	 * 更新用户信息
+	 * @param user
+	 * @return
+	 */
+	public boolean updateUser(User user);
+	
 }

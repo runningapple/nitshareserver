@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import com.lin.entity.User;
 import com.lin.redis.UserRedis;
 
 /**
@@ -19,24 +18,27 @@ import com.lin.redis.UserRedis;
 public class UserRedisImpl implements UserRedis{
 	
 	@Autowired
-	private RedisTemplate<String, User> redisTemplate;
+	private RedisTemplate<String, String> redisTemplate;
 	
 	@Override
-	public void addOrUpdate(User user) {
-		redisTemplate.opsForValue().set("user.id."+user.getId(), user);
+	public void addOrUpdate(String account) {
+//		redisTemplate.opsForValue().set("user.id"+user.getAccount(), user);
+		redisTemplate.opsForSet().add("user.id", account);
 	}
 
 	@Override
-	public void deleteUserById(String id) {
-		redisTemplate.delete("user.id." + id);
+	public void deleteUserById(String account) {
+//		redisTemplate.delete("user.id" + id);
+		redisTemplate.opsForSet().remove("user.id", account);
 	}
 
 	@Override
-	public User loadUser(String id) {
+	public boolean loadUser(String account) {
 		
-		User user = (User)redisTemplate.opsForValue().get("user.id." + id);
-		
-		return user;
+//		Object oj = redisTemplate.opsForValue().get("user.id." + account);
+		boolean result = redisTemplate.opsForSet().isMember("user.id", account);
+		return result;
+//		return user;
 	}
 
 }

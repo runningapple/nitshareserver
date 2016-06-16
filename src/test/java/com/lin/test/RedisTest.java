@@ -40,7 +40,7 @@ public class RedisTest {
 		user.setMail("admin@admin.com");
 		user.setPwd("dfd");
 		user.setNickname("linzj");
-		userRedis.addOrUpdate(user);
+//		userRedis.addOrUpdate(user);
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class RedisTest {
 	 */
 	@Test
 	public void read(){
-		user = userRedis.loadUser("0");
+//		user = userRedis.loadUser("0");
 		System.out.println(user);
 		assertEquals("linzj",user.getNickname());
 	}
@@ -59,7 +59,7 @@ public class RedisTest {
 	@Test
 	public void delete(){
 		userRedis.deleteUserById("0");
-		user = userRedis.loadUser("0");
+//		user = userRedis.loadUser("0");
 		assertNull(user);
 	}
 }

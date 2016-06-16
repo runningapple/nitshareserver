@@ -1,6 +1,5 @@
 package com.lin.redis;
 
-import com.lin.entity.User;
 
 /**
  * 
@@ -14,20 +13,20 @@ public interface UserRedis {
 	
 	/**
 	 * 添加或者更新redis中的用户
-	 * @param user
+	 * @param account
 	 */
-	public void addOrUpdate(User user);
+	public void addOrUpdate(String account);
 	
 	/**
 	 * 根据用户id获取用户对象
-	 * @param id
+	 * @param account
 	 * @return
 	 */
-	public User loadUser(String id);
+	public boolean loadUser(String account);
 	
 	/**
 	 * 根据id删除redis中的用户
-	 * @param id
+	 * @param account
 	 */
-	public void deleteUserById(String id);
+	public void deleteUserById(String account);
 }

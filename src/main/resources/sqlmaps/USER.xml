@@ -25,7 +25,18 @@
 			#id#,#account#,PASSWORD(#pwd#),#mobile#,#mail#,#qq#,#nickname#,#headimg#,#score#,#rank#
 		)
 	</insert>
-	
+
+	<!-- 更新用户信息 -->
+	<update id="update" parameterClass="User">
+		UPDATE user
+		SET nickname = #nickname#,
+		 mobile = #mobile#,
+		 qq = #qq#,
+		 mail = #mail#
+		WHERE
+			id = #id#
+	</update>
+		
 	<!-- 分页获取商品概要信息 -->
 	<select id="getUser" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT
@@ -34,6 +45,16 @@
 			user
 		WHERE account=#account# AND pwd=PASSWORD(#pwd#)
 	</select>
+	
+	<!-- 获取对象详细信息 -->
+	<select id="getUserDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			account,mobile,mail,qq,nickname,headimg,score,rank
+		FROM
+			user
+		WHERE id=#id#
+	</select>
+	
 	
 	<!-- 查询账号是否已经存在 -->
 	<select id="checkAccount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">

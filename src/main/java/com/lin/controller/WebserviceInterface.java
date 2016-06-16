@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lin.entity.Commodity;
 import com.lin.entity.User;
+import com.lin.redis.UserRedis;
 import com.lin.service.CommodityService;
 import com.lin.service.UploadFileService;
 import com.lin.service.UserService;
@@ -50,6 +51,9 @@ public class WebserviceInterface {
 	
 	@Autowired
 	private UploadFileService uploadFileService;
+	
+	@Autowired
+	private UserRedis userRedis;
 	
 	/**
 	 * 测试demo
@@ -159,7 +163,11 @@ public class WebserviceInterface {
 	@ResponseBody
 	@RequestMapping(value="user.register", produces="text/html;charset=UTF-8", method=RequestMethod.GET)
 	public String registerUser(User user, String callback){
-		return this.result(callback, this.userService.registerUser(user));
+		String result = this.userService.registerUser(user);
+		if (result.equals("[null]") == false){
+			userRedis.addOrUpdate(user.getAccount());
+		}
+		return this.result(callback, result);
 	}
 	
 	/**
@@ -173,7 +181,42 @@ public class WebserviceInterface {
 	@ResponseBody
 	@RequestMapping(value="/user.login", produces="text/html;charset=UTF-8", method = RequestMethod.GET)
 	public String loginUser(String account, String pwd, String callback) {
-		return this.result(callback, this.userService.loginUser(account, pwd));
+		String result = this.userService.loginUser(account, pwd);
+		if (result.equals("[null]") == false){
+			userRedis.addOrUpdate(account);
+		}
+		return this.result(callback, result);
+	}
+	
+	/**
+	 * 获取用户信息信息
+	 * @param id
+	 * @param callback
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/user.detail", produces="text/html;charset=UTF-8", method = RequestMethod.GET)
+	public String searchUserDetail(String id, String callback) {
+		return this.result(callback, this.userService.searchUser(id));
+	}
+	
+	/**
+	 * 更新用户信息
+	 * @param user
+	 * @param callback
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/user.update", produces="text/html;charset=UTF-8", method = RequestMethod.GET)
+	public String updateUser(User user, String callback) {
+		String result = this.result(callback, this.userService.updateUser(user));
+		
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
+		HashMap<String, String> hashMap = new HashMap<String, String>();
+		hashMap.put("result", result);
+		list.add(hashMap);
+		
+		return this.result(callback, JSONArray.fromObject(list).toString());
 	}
 	
 	/**
@@ -199,8 +242,26 @@ public class WebserviceInterface {
 	@ResponseBody
 	@RequestMapping(value="user.islogin", produces="text/html;charset=UTF-8", method = RequestMethod.GET)
 	public String checkUserInRedis(String account, String callback){
+		boolean result = userRedis.loadUser(account);
 		
-		return null;
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
+		HashMap<String, String> hashMap = new HashMap<String, String>();
+		hashMap.put("result", result == true ? "true" : "false");
+		list.add(hashMap);
+		
+		return this.result(callback, JSONArray.fromObject(list).toString());
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="user.logout", produces="text/html;charset=UTF-8", method = RequestMethod.GET)
+	public String logOut(String account, String callback){
+		userRedis.deleteUserById(account);
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
+		HashMap<String, String> hashMap = new HashMap<String, String>();
+		hashMap.put("result", "success");
+		list.add(hashMap);
+		
+		return this.result(callback, JSONArray.fromObject(list).toString());
 	}
 	
 	/**
